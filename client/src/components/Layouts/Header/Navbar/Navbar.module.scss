@@ -1,0 +1,66 @@
+// button
+
+.button-show {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    -webkit-user-select: none;
+
+    svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+    }
+    &:hover {
+        background-color: var(--bg-hover-color);
+    }
+}
+
+// Navbar
+
+.navbar {
+    width: 100%;
+    max-width: 300px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: var(--bg-navbar-color);
+    padding: 15px 15px 45px 15px;
+    position: absolute;
+    z-index: 1000;
+
+    opacity: 0.9;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+
+    &.active {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+// Navbar Item
+
+.navbar-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+    color: var(--text-title-color);
+
+    display: flex;
+    align-items: center;
+
+    & > svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+        display: block;
+        fill: var(--text-title-color);
+    }
+    &:hover {
+        background-color: var(--bg-hover-color);
+    }
+}

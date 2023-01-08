@@ -1,0 +1,20 @@
+.container {
+}
+
+.item {
+    display: inline-block;
+}
+
+.text {
+    color: #288ad6;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.item + .item .text::before {
+    content: "\00BB";
+    padding: 0 5px;
+    color: #ccc;
+}

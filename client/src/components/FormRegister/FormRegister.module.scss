@@ -1,0 +1,225 @@
+.wrapper {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #ffff;
+
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-auth {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Form register
+
+.form-register {
+    width: 100%;
+    position: relative;
+    max-width: 400px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Form header
+
+.form-header {
+    margin-bottom: 25px;
+
+    .header-title {
+        
+        & > h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0px;
+            text-transform: uppercase;
+        }
+    }
+    .header-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        margin-top: 5px;
+        position: absolute;
+        background-color: #ee2c74;
+    }
+}
+
+// Form auth button
+
+.form-group-button {
+    margin-bottom: 25px;
+}
+
+.login-with-social {
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// Icon
+
+.grid-icon {
+    left: 15px;
+    position: absolute;
+
+    svg {
+        width: 16px;
+        height: 16px;
+        fill: #ffff;
+        display: block;
+    }
+    &::after {
+        content: "";
+        top: 50%;
+        right: -15px;
+        width: 2px;
+        height: 120%;
+        border-radius: 2px;
+        transform: translateY(-50%);
+        background-color: #ffff;
+        position: absolute;
+    }
+}
+
+// Button Auth
+
+.button-auth {
+    width: 100%;
+    height: 42px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    position: relative;
+
+    font-size: 15px;
+    color: #ffff;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-user-select: none;
+
+    & + & {
+        margin-top: 12px;
+    }
+    &:hover {
+        background-color: #1c2de2;
+    }
+}
+
+.auth-google {
+    background-color: #df4930;
+
+    &:hover {
+        background-color: #cd452e;
+    }
+}
+
+.auth-facebook {
+    background-color: #3b49df;
+}
+
+.auth-github {
+    background-color: #24292e;
+
+    &:hover {
+        background-color: #222;
+    }
+}
+
+// Form input
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-title {
+    font-size: 17px;
+    padding: 0px 10px 6px 5px;
+    cursor: pointer;
+}
+
+.form-input {
+    input {
+        width: 100%;
+        height: 36px;
+        padding-left: 15px;
+        font-size: 17px;
+
+        :focus {
+            border-color: var(--focus-input-border-color);
+            box-shadow: var(--focus-input-box-shadow-color);
+        }
+
+    }
+}
+
+// Form action
+
+.form-action {
+    font-size: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+
+    -webkit-user-select: none;
+}
+
+.text-checkInput {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+// Button submit form
+
+.auth-submit-form {
+    background-color: #38a7ff;
+
+    &:hover {
+        background-color: #309ef8;
+    }
+}
+
+// Form devider
+
+.form-devider {
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+        width: 50%;
+        text-align: center;
+        margin-left: 25%;
+        margin-right: 25%;
+        opacity: 1 !important;
+        background-color: #ffff;
+        z-index: 1;
+    }
+    .devider-line {
+        width: 100%;
+        height: 1px;
+        top: 50%;
+        left: 0px;
+        transform: translateY(50%);
+        background-color: var(--border-color);
+        position: absolute;
+        z-index: 0;
+    }
+}

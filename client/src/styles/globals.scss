@@ -24,7 +24,7 @@
 
     --focus-input-shadow-color: rgb(59 73 223);
 
-    --focus-input-border-color: #1b74e4;
+    --focus-input-border-color: #287feac5;
     --focus-input-box-shadow-color: 0 0 0 2px #e7f3ff;
 }
 
@@ -69,13 +69,20 @@ body {
 
 input {
     outline: none;
-    border: 1px solid rgb(84, 91, 100);
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 15px;
+
+    &.error {
+        border-color: red !important;
+        box-shadow: 0px 0px 2px red !important;
+    }
 }
 
 input:focus {
-    border-color: #1b74e4;
-    box-shadow: 0 0 0 2px #e7f3ff;
-    caret-color: #1b74e4;
+    border-color: var(--focus-input-border-color);
+    box-shadow: var(--focus-input-box-shadow-color);
 }
 
 // --
@@ -99,20 +106,6 @@ input:focus {
     }
     to {
         background-position: 100% 0;
-    }
-}
-
-// Input
-
-input {
-    outline: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 6px 15px;
-
-    &.error {
-        border-color: red !important;
-        box-shadow:  0px 0px 2px red !important;
     }
 }
 

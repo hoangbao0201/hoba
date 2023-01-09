@@ -22,13 +22,17 @@
 
 // Form register
 
-.form-register {
+.grid-form {
     width: 100%;
-    position: relative;
     max-width: 400px;
 
     margin-left: auto;
     margin-right: auto;
+}
+
+.form-register {
+    // width: 100%;
+    position: relative;
 }
 
 // Form header
@@ -145,6 +149,7 @@
 
 .form-group {
     margin-bottom: 10px;
+    display: grid;
 }
 
 .form-title {

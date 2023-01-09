@@ -22,13 +22,16 @@
 
 // Form Login
 
-.form-login {
+.grid-form {
     width: 100%;
-    position: relative;
     max-width: 400px;
 
     margin-left: auto;
     margin-right: auto;
+}
+
+.form-login {
+    position: relative;
 }
 
 // Form header
@@ -145,6 +148,7 @@
 
 .form-group {
     margin-bottom: 10px;
+    display: grid;
 }
 
 .form-title {
@@ -160,10 +164,10 @@
         padding-left: 15px;
         font-size: 17px;
 
-        :focus {
-            border-color: var(--focus-input-border-color);
-            box-shadow: var(--focus-input-box-shadow-color);
-        }
+        // :focus {
+        //     border-color: var(--focus-input-border-color);
+        //     box-shadow: var(--focus-input-box-shadow-color);
+        // }
 
     }
 }

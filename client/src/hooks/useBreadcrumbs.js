@@ -1,8 +1,7 @@
-
 const listTitleChange = {
     login: "Đăng nhập",
-    register: "Đăng kí"
-}
+    register: "Đăng kí",
+};
 const listTitleSkip = ["auth"];
 
 const useBreadcrumbs = (router) => {
@@ -17,15 +16,14 @@ const useBreadcrumbs = (router) => {
         const href = "/" + asPathNestedRoutes.slice(0, idx + 1).join("/");
 
         let title = subpath;
-        if(listTitleChange[title]) {
+        if (listTitleChange[title]) {
             title = listTitleChange[title];
         }
 
-        if(listTitleSkip.includes(title)) {
+        if (listTitleSkip.includes(title)) {
             return false;
-        }
-        else {
-            result.push({ href: href, title: title })
+        } else {
+            result.push({ href: href, title: title });
             return true;
         }
     });

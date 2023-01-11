@@ -8,9 +8,10 @@ import { createToken } from "../utils/auth";
 
 @Resolver()
 export class UserResolver {
-    @Query((_type) => String)
-    hello() {
-        return "hello";
+    @Query((_return) => [User])
+    async users(): Promise<User[]> {
+        const users = await User.find({});
+        return users;
     }
 
     @Mutation((_return) => UserMutaionresponse)
@@ -116,7 +117,7 @@ export class UserResolver {
                 success: true,
                 message: "Register successful",
                 user: existingUser,
-                accessToken: createToken(existingUser)
+                accessToken: createToken(existingUser),
             };
         } catch (error) {
             return {

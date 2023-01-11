@@ -12,7 +12,7 @@ const Login: NextPage = () => {
     const { data: session } = useSession();
 
     if (session) {
-        return <></>
+        router.push("/")
     }
 
     return (

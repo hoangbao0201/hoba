@@ -7,7 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 import OverlayLayout from "../../../Layouts/OverlayLayout";
-import { iconBars, iconLogin, iconRegister } from "../../../../public/icons";
+import { iconBars, iconLogin, iconRegister } from "../../../../../public/icons";
 import useClickOutSide from "../../../../hooks/useClickOutSide";
 
 export interface NavbarProps {}
@@ -24,12 +24,12 @@ const Navbar = () => {
 
     return (
         <>
-            <div
+            <button
                 className={cx("button-show")}
                 onClick={() => setIsNavbar(true)}
             >
                 {iconBars}
-            </div>
+            </button>
             <OverlayLayout active={isNavbar}>
                 <div
                     ref={navbarRef}

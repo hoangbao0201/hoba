@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./FormRegister.module.scss";
 const cx = classNames.bind(styles);
 
-import { iconFacebook, iconGithub, iconGoogle } from "../../public/icons";
+import { iconFacebook, iconGithub, iconGoogle } from "../../../public/icons";
 import { useRouter } from "next/router";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import { ChangeEvent, useState } from "react";

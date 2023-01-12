@@ -85,6 +85,10 @@ input:focus {
     box-shadow: var(--focus-input-box-shadow-color);
 }
 
+button {
+    outline: none;
+}
+
 // --
 
 /* Skeleton */

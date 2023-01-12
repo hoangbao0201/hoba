@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import Link from "next/link";
-import { iconGithub, iconSearch } from "../../../public/icons";
+// import { iconGithub, iconSearch } from "../../../public/icons";
 import styles from "./Header.module.scss";
 import Navbar from "./Navbar";
 const cx = classNames.bind(styles);
@@ -20,7 +20,7 @@ const Header = () => {
                 </div>
 
                 <div className={cx("content-search")}>
-                    <label className={cx("grid-icon")} htmlFor="inputSearch">{iconSearch}</label>
+                    {/* <label className={cx("grid-icon")} htmlFor="inputSearch">{iconSearch}</label> */}
                     <input
                         id="inputSearch"
                         className={cx("input-search")}

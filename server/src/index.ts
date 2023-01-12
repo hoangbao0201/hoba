@@ -13,8 +13,14 @@ import { UserResolver } from "./resolvers/user";
 import "reflect-metadata";
 import { createServer } from "http";
 import { GreetingResolver } from "./resolvers/greeting";
+import cors from "cors"
 
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
+
 const PORT = process.env.PORT || 4000;
 
 const main = async () => {

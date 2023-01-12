@@ -74,67 +74,58 @@ const FormLogin = () => {
                                 </div>
 
                                 <div className={cx("form-group-button")}>
-                                    <div
+                                    <button
                                         className={cx(
                                             "button-auth",
                                             "auth-submit-form"
                                         )}
                                     >
                                         Đăng nhập
-                                    </div>
-                                </div>
-
-                                <div className={cx("form-devider")}>
-                                    <div className={cx("text")}>
-                                        Đăng nhập bằng
-                                    </div>
-                                    <div className={cx("devider-line")}></div>
-                                </div>
-                                <div
-                                    className={cx(
-                                        "form-group-button",
-                                        "login-with-social"
-                                    )}
-                                >
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-google"
-                                        )}
-                                        onClick={handleSignIn}
-                                        name="google"
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconGoogle}
-                                        </span>
-                                        Google
-                                    </button>
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-facebook"
-                                        )}
-                                        name="facebook"
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconFacebook}
-                                        </span>
-                                        Facebook
-                                    </button>
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-github"
-                                        )}
-                                        name="github"
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconGithub}
-                                        </span>
-                                        Github
                                     </button>
                                 </div>
                             </form>
+                            <div className={cx("form-devider")}>
+                                <div className={cx("text")}>Đăng nhập bằng</div>
+                                <div className={cx("devider-line")}></div>
+                            </div>
+                            <div
+                                className={cx(
+                                    "form-group-button",
+                                    "login-with-social"
+                                )}
+                            >
+                                <button
+                                    className={cx("button-auth", "auth-google")}
+                                    onClick={handleSignIn}
+                                    name="google"
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconGoogle}
+                                    </span>
+                                    Google
+                                </button>
+                                <button
+                                    className={cx(
+                                        "button-auth",
+                                        "auth-facebook"
+                                    )}
+                                    name="facebook"
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconFacebook}
+                                    </span>
+                                    Facebook
+                                </button>
+                                <button
+                                    className={cx("button-auth", "auth-github")}
+                                    name="github"
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconGithub}
+                                    </span>
+                                    Github
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className={cx("content-side")}></div>

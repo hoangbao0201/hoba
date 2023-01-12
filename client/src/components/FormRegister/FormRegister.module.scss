@@ -64,6 +64,10 @@
 
 .form-group-button {
     margin-bottom: 25px;
+
+    &.grid-button-submit {
+        margin-top: 25px;
+    }
 }
 
 .login-with-social {
@@ -171,22 +175,6 @@
         }
 
     }
-}
-
-// Form action
-
-.form-action {
-    font-size: 15px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-
-    -webkit-user-select: none;
-}
-
-.text-checkInput {
-    cursor: pointer;
-    margin-left: 5px;
 }
 
 // Button submit form

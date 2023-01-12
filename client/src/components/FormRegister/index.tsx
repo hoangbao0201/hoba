@@ -7,14 +7,31 @@ import { useRouter } from "next/router";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import { ChangeEvent, useState } from "react";
 import BreadcrumbLayout from "../Layouts/BreadcrumbLayout";
+import { useMutation } from "@apollo/client";
+// import { registerMutation } from "../../graphql/mutations/mutations";
 
 export interface FormRegisterProps {}
+
+interface UserMutationResponse {
+    code: number
+    success: boolean
+    message: string
+    user: string
+    errors: string
+}
+
+interface NewUserInput {
+    username: string
+    email: string
+    password: string
+}
+
 const FormRegister = () => {
     const [dataForm, setDataForm] = useState({
         username: "",
         email: "",
         password: "",
-        rePassword: "",
+        // rePassword: "",
     });
 
     const router = useRouter();
@@ -27,10 +44,32 @@ const FormRegister = () => {
         });
     };
 
+    // Apollo client
+
+    // const [registerUser, { data, error }] = useMutation<
+    //     { register: UserMutationResponse },
+    //     { registerInput: NewUserInput }
+    // >(registerMutation);
+
+    const handleSubmitFormRegisterUser = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        // console.log(dataForm)
+
+        // await registerUser({
+        //     variables: {
+        //         registerInput: dataForm
+        //     }
+        // })
+    }
+
     return (
         <>
             <div className={cx("wrapper")}>
                 <div className={cx("container")}>
+
+                    {/* { data?.register.success && <p>{JSON.stringify(data.register)}</p> } */}
+
                     <BreadcrumbLayout data={newRouter} />
 
                     <div className={cx("content-auth")}>
@@ -78,7 +117,10 @@ const FormRegister = () => {
                                     </div>
                                 </div>
                                 <div className={cx("form-group")}>
-                                    <label htmlFor="input-register-password" className={cx("form-title")}>
+                                    <label
+                                        htmlFor="input-register-password"
+                                        className={cx("form-title")}
+                                    >
                                         Mật khẩu
                                     </label>
                                     <div className={cx("form-input")}>
@@ -91,8 +133,11 @@ const FormRegister = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className={cx("form-group")}>
-                                    <label htmlFor="input-register-rePassword" className={cx("form-title")}>
+                                {/* <div className={cx("form-group")}>
+                                    <label
+                                        htmlFor="input-register-rePassword"
+                                        className={cx("form-title")}
+                                    >
                                         Nhập lại mật khẩu
                                     </label>
                                     <div className={cx("form-input")}>
@@ -104,77 +149,59 @@ const FormRegister = () => {
                                             onChange={eventChangeValueInput}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
 
-                                <div className={cx("form-action")}>
-                                    <input id="inputMemo" type="checkbox" />
-                                    <label
-                                        className={cx("text-checkInput")}
-                                        htmlFor="inputMemo"
-                                    >
-                                        Ghi nhớ đăng nhập
-                                    </label>
-                                </div>
-
-                                <div className={cx("form-group-button")}>
-                                    <div
+                                <div className={cx("form-group-button", "grid-button-submit")}>
+                                    <button
                                         className={cx(
                                             "button-auth",
                                             "auth-submit-form"
                                         )}
+                                        onClick={handleSubmitFormRegisterUser}
                                     >
                                         Đăng kí
-                                    </div>
-                                </div>
-
-                                <div className={cx("form-devider")}>
-                                    <div className={cx("text")}>
-                                        Đăng nhập bằng
-                                    </div>
-                                    <div className={cx("devider-line")}></div>
-                                </div>
-
-                                <div
-                                    className={cx(
-                                        "form-group-button",
-                                        "login-with-social"
-                                    )}
-                                >
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-google"
-                                        )}
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconGoogle}
-                                        </span>
-                                        Google
-                                    </button>
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-facebook"
-                                        )}
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconFacebook}
-                                        </span>
-                                        Facebook
-                                    </button>
-                                    <button
-                                        className={cx(
-                                            "button-auth",
-                                            "auth-github"
-                                        )}
-                                    >
-                                        <span className={cx("grid-icon")}>
-                                            {iconGithub}
-                                        </span>
-                                        Github
                                     </button>
                                 </div>
                             </form>
+                            <div className={cx("form-devider")}>
+                                <div className={cx("text")}>Đăng nhập bằng</div>
+                                <div className={cx("devider-line")}></div>
+                            </div>
+
+                            <div
+                                className={cx(
+                                    "form-group-button",
+                                    "login-with-social"
+                                )}
+                            >
+                                <button
+                                    className={cx("button-auth", "auth-google")}
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconGoogle}
+                                    </span>
+                                    Google
+                                </button>
+                                <button
+                                    className={cx(
+                                        "button-auth",
+                                        "auth-facebook"
+                                    )}
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconFacebook}
+                                    </span>
+                                    Facebook
+                                </button>
+                                <button
+                                    className={cx("button-auth", "auth-github")}
+                                >
+                                    <span className={cx("grid-icon")}>
+                                        {iconGithub}
+                                    </span>
+                                    Github
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

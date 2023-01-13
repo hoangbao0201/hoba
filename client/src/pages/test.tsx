@@ -1,23 +1,12 @@
-import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
 import GlobalStyles from "../components/GlobalStyles";
-// import { graphql } from "../generated/gql";
 
 export interface TestProps {}
 
-// const AllUser : any = graphql();
+
 
 const Test = () => {
     
-    // const { data } = useQuery( gql`
-    //     query () {
-    //         users() {
-    //             id
-    //             username
-    //         }
-    //     }
-    // ` )
-
     return (
         <>
             <Head>
@@ -32,7 +21,7 @@ const Test = () => {
             <main>
                 <GlobalStyles>
                     
-                    {/* {!!data && <p>{JSON.stringify(data)}</p>} */}
+                    TEST
 
                 </GlobalStyles>
             </main>

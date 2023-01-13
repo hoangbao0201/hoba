@@ -7,11 +7,26 @@ import { useRouter } from "next/router";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import BreadcrumbLayout from "../Layouts/BreadcrumbLayout";
 import { signIn } from "next-auth/react";
+import { useLoginMutation } from "../../generated/graphql";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 export interface FormLoginProps {}
 const FormLogin = () => {
+    const [dataForm, setDataForm] = useState({
+        accout: "",
+        password: "",
+    });
+    const [login, _] = useLoginMutation();
+
     const router = useRouter();
     const newRouter = useBreadcrumbs(router);
+
+    const eventChangeValueInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setDataForm({
+            ...dataForm,
+            [e.target.name]: e.target.value,
+        });
+    };
 
     const handleSignIn = async (e: any) => {
         e.preventDefault();
@@ -19,6 +34,22 @@ const FormLogin = () => {
         const buttonName = e.target.name;
         if (buttonName == "google") {
             signIn("google");
+        }
+    };
+
+    const handleSubmitFormLoginUser = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const response = await login({
+            variables: {
+                loginInput: dataForm,
+            },
+        });
+
+        if (response.data?.login.errors) {
+            console.log("ERROR: ", response.data?.login.errors);
+        } else {
+            router.push("/");
         }
     };
 
@@ -30,7 +61,10 @@ const FormLogin = () => {
 
                     <div className={cx("content-auth")}>
                         <div className={cx("grid-form")}>
-                            <form className={cx("form-login")}>
+                            <form
+                                className={cx("form-login")}
+                                onSubmit={handleSubmitFormLoginUser}
+                            >
                                 <div className={cx("form-header")}>
                                     <div className={cx("header-title")}>
                                         <span
@@ -48,7 +82,11 @@ const FormLogin = () => {
                                         Tài khoản
                                     </label>
                                     <div className={cx("form-input")}>
-                                        <input id="input-login-username" />
+                                        <input
+                                            id="input-login-username"
+                                            name="accout"
+                                            onChange={eventChangeValueInput}
+                                        />
                                     </div>
                                 </div>
                                 <div className={cx("form-group")}>
@@ -59,7 +97,11 @@ const FormLogin = () => {
                                         Mật khẩu
                                     </label>
                                     <div className={cx("form-input")}>
-                                        <input id="input-login-password" />
+                                        <input
+                                            id="input-login-password"
+                                            name="password"
+                                            onChange={eventChangeValueInput}
+                                        />
                                     </div>
                                 </div>
 

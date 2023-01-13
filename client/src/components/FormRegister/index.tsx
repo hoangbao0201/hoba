@@ -5,10 +5,9 @@ const cx = classNames.bind(styles);
 import { iconFacebook, iconGithub, iconGoogle } from "../../../public/icons";
 import { useRouter } from "next/router";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import BreadcrumbLayout from "../Layouts/BreadcrumbLayout";
-import { useMutation } from "@apollo/client";
-// import { registerMutation } from "../../graphql/mutations/mutations";
+import { useRegisterMutation } from "../../generated/graphql";
 
 export interface FormRegisterProps {}
 
@@ -34,6 +33,8 @@ const FormRegister = () => {
         // rePassword: "",
     });
 
+    const [register, _] = useRegisterMutation()
+
     const router = useRouter();
     const newRouter = useBreadcrumbs(router);
 
@@ -44,23 +45,23 @@ const FormRegister = () => {
         });
     };
 
-    // Apollo client
-
-    // const [registerUser, { data, error }] = useMutation<
-    //     { register: UserMutationResponse },
-    //     { registerInput: NewUserInput }
-    // >(registerMutation);
-
-    const handleSubmitFormRegisterUser = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmitFormRegisterUser = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // console.log(dataForm)
+        const response = await register({
+            variables: {
+                registerInput: dataForm
+            }
+        })
 
-        // await registerUser({
-        //     variables: {
-        //         registerInput: dataForm
-        //     }
-        // })
+        console.log("RESPONSE: ", response);
+
+        if(response.data?.register.errors) {
+            console.log("ERROR: ", response.data?.register.errors)
+        }
+        else {
+            router.push('/')
+        }
     }
 
     return (
@@ -74,7 +75,7 @@ const FormRegister = () => {
 
                     <div className={cx("content-auth")}>
                         <div className={cx("grid-form")}>
-                            <form className={cx("form-register")}>
+                            <form className={cx("form-register")} onSubmit={handleSubmitFormRegisterUser}>
                                 <div className={cx("form-header")}>
                                     <div className={cx("header-title")}>
                                         <span
@@ -157,7 +158,6 @@ const FormRegister = () => {
                                             "button-auth",
                                             "auth-submit-form"
                                         )}
-                                        onClick={handleSubmitFormRegisterUser}
                                     >
                                         Đăng kí
                                     </button>

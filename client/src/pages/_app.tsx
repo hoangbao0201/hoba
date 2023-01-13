@@ -15,7 +15,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 NProgress.configure({ showSpinner: false });
 
 const apolloClient = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.NODE_ENV === "production" ? "" : "http://localhost:4000/graphql",
     cache: new InMemoryCache(),
     credentials: "include",
 });

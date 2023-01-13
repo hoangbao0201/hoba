@@ -1,17 +1,19 @@
 import { UserMutaionresponse } from "../types/UserMutationResponse";
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import argon2 from "argon2";
 import { RegisterInput } from "../types/RegisterInput";
 import { User } from "../entities/User";
 import { LoginInput } from "../types/LoginInput";
 import { createToken } from "../utils/auth";
+import { Context } from "../types/Context";
 
 @Resolver()
 export class UserResolver {
-    @Query((_return) => [User])
-    async users(): Promise<User[]> {
-        const users = await User.find({});
-        return users;
+    @Query((_return) => User, { nullable: true })
+    async me(@Ctx() { req }: Context): Promise<User | undefined | null> {
+        if (!req.session.userId) return null
+        const user = await User.findOne({ where: { id: req.session.userId } });
+        return user;
     }
 
     @Mutation((_return) => UserMutaionresponse)
@@ -71,7 +73,8 @@ export class UserResolver {
 
     @Mutation((_return) => UserMutaionresponse)
     async login(
-        @Arg("loginInput") loginInput: LoginInput
+        @Arg("loginInput") loginInput: LoginInput,
+        // @Ctx() { req }: Context
     ): Promise<UserMutaionresponse> {
         try {
             const { accout, password } = loginInput;
@@ -111,6 +114,9 @@ export class UserResolver {
                     ],
                 };
             }
+
+            // Add Session
+            // req.session.userId = existingUser.id;
 
             return {
                 code: 200,

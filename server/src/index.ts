@@ -13,13 +13,18 @@ import { UserResolver } from "./resolvers/user";
 import "reflect-metadata";
 import { createServer } from "http";
 import { GreetingResolver } from "./resolvers/greeting";
-import cors from "cors"
+import cors from "cors";
+import mongoose from "mongoose";
+import session from "express-session";
+import { COOKIE_NAME, __prod__ } from "./constants";
 
 const app = express();
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}))
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+    })
+);
 
 const PORT = process.env.PORT || 4000;
 
@@ -34,8 +39,32 @@ const main = async () => {
         entities: [User],
     });
 
+    // MongoDB
+    const mongoURL = `mongodb+srv://${process.env.SESSION_DB_USERNAME_DEV}:${process.env.SESSION_DB_PASSWORD_DEV}@hoba.oij8p2c.mongodb.net/?retryWrites=true&w=majority`;
+    await mongoose.connect(mongoURL);
+    console.log("MongoDB connected");
+
+    // Express Session
+    app.set("trust proxy", 1);
+    app.use(
+        session({
+            name: COOKIE_NAME,
+            // store: ,
+            secret: process.env.SESSION_SECRET_DEV as string,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                maxAge: 1000 * 60 * 60, // one hour
+				httpOnly: true,
+                secure: __prod__,
+                sameSite: 'lax'
+            },
+        })
+    );
+
     const httpServer = createServer(app);
 
+    // Apollo Server
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             validate: false,
@@ -47,9 +76,10 @@ const main = async () => {
         ],
         context: ({ req, res }) => {
             return {
-                req, res
-            }
-        }
+                req,
+                res,
+            };
+        },
     });
     await apolloServer.start();
     apolloServer.applyMiddleware({

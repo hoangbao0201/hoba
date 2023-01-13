@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import useBreadcrumbs from "../../hooks/useBreadcrumbs";
 import BreadcrumbLayout from "../Layouts/BreadcrumbLayout";
 import { signIn } from "next-auth/react";
-import { useLoginMutation } from "../../generated/graphql";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useLoginMutation } from "../../generated/graphql";
 
 export interface FormLoginProps {}
 const FormLogin = () => {
@@ -99,6 +99,7 @@ const FormLogin = () => {
                                     <div className={cx("form-input")}>
                                         <input
                                             id="input-login-password"
+                                            type="password"
                                             name="password"
                                             onChange={eventChangeValueInput}
                                         />

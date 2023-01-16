@@ -69,8 +69,6 @@ const FormRegister = () => {
             <div className={cx("wrapper")}>
                 <div className={cx("container")}>
 
-                    {/* { data?.register.success && <p>{JSON.stringify(data.register)}</p> } */}
-
                     <BreadcrumbLayout data={newRouter} />
 
                     <div className={cx("content-auth")}>

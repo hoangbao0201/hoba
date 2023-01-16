@@ -46,6 +46,8 @@ const FormLogin = () => {
             },
         });
 
+        // console.log("RESPONSE: ", JSON.stringify(response))
+
         if (response.data?.login.errors) {
             console.log("ERROR: ", response.data?.login.errors);
         } else {

@@ -3,7 +3,7 @@ import styles from "./Navbar.module.scss";
 const cx = classNames.bind(styles);
 
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+// import { signOut, useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 import OverlayLayout from "../../../Layouts/OverlayLayout";
@@ -12,8 +12,8 @@ import useClickOutSide from "../../../../hooks/useClickOutSide";
 
 export interface NavbarProps {}
 const Navbar = () => {
-    const { data: session } = useSession();
-
+    // const { data: session } = useSession();
+    const session = false
     const navbarRef = useRef<HTMLDivElement>(null);
     const [isNavbar, setIsNavbar] = useState(false);
 
@@ -41,7 +41,7 @@ const Navbar = () => {
                         <div className={cx("content")}>
                             {session ? (
                                 <Link href="/auth/login">
-                                    <div className={cx("navbar-item")} onClick={() => signOut()}>
+                                    <div className={cx("navbar-item")} >
                                         {iconLogin}Đăng xuất
                                     </div>
                                 </Link>
@@ -70,9 +70,9 @@ const Navbar = () => {
                                     {iconRegister}hoangbao0201
                                 </div>
                             </Link>
-                            <Link href="/posts/create">
+                            <Link href="/book/create">
                                 <div className={cx("navbar-item")}>
-                                    {iconRegister}Create Post
+                                    {iconRegister}Create Book
                                 </div>
                             </Link>
                         </div>

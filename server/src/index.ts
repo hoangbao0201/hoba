@@ -17,6 +17,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import session from "express-session";
 import { COOKIE_NAME, __prod__ } from "./constants";
+import { Post } from "./entities/Post";
 
 const app = express();
 app.use(
@@ -29,6 +30,9 @@ app.use(
 const PORT = process.env.PORT || 4000;
 
 const main = async () => {
+
+    // route(app);
+
     await createConnection({
         type: "postgres",
         database: "hoba",
@@ -36,7 +40,7 @@ const main = async () => {
         password: process.env.DB_PASSWORD_DEV,
         logging: true,
         synchronize: true,
-        entities: [User],
+        entities: [User, Post],
     });
 
     // MongoDB

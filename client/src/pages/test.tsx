@@ -3,10 +3,7 @@ import GlobalStyles from "../components/GlobalStyles";
 
 export interface TestProps {}
 
-
-
 const Test = () => {
-    
     return (
         <>
             <Head>
@@ -19,11 +16,7 @@ const Test = () => {
             </Head>
 
             <main>
-                <GlobalStyles>
-                    
-                    TEST
-
-                </GlobalStyles>
+                <GlobalStyles>Test</GlobalStyles>
             </main>
         </>
     );
